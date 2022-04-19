@@ -5,14 +5,21 @@ const Header = (props) => {
 }
 
 
+const Part = (props) => {
+  return (
+    <p key={props.name}>
+      {props.name} {props.numExercises}
+    </p>
+  )
+}
+
+
 const Content = (props) => {
   return (
     <>
       {props.parts.map((p) => {
         return (
-          <p key={p.name}>
-            {p.name} {p.numExercises}
-          </p>
+          <Part key={p.name} name={p.name} numExercises={p.numExercises} />
         )
       })}
     </>
