@@ -28,13 +28,19 @@ const App = () => {
    
   const [selected, setSelected] = useState(0)
 
+  const [bestAnecdote, setBestAnecdote] = useState(null)
+
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <Anecdote anecdote={anecdotes[selected]}/>
       <button onClick={() => {
         let newAnecdotes = [...anecdotes]
         newAnecdotes[selected].votes++;
         setAnecdotes(newAnecdotes)
+
+        if (!bestAnecdote || newAnecdotes[selected].votes > bestAnecdote.votes)
+          setBestAnecdote(newAnecdotes[selected])
       }}>vote</button>
       <button onClick={() => {
         if (anecdotes.length <= 1)
@@ -47,6 +53,13 @@ const App = () => {
 
         setSelected(newIndex)
       }}>Next anecdote</button>
+
+      {bestAnecdote &&
+        <>
+          <h2>Best anecdote</h2>
+          <Anecdote anecdote={bestAnecdote}/>
+        </>
+      }
     </div>
   )
 }
