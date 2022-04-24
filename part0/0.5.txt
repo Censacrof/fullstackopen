@@ -17,16 +17,3 @@ note over browser:
 browser executes the event handler
 that renders notes to display
 end note
-
-note over browser
-User write a new note text in the text
-field and then clicks on the save button
-end note
-
-note over browser
-The new note is pushed on the notes array
-and to the DOM
-end note
-
-browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
-server-->browser: 201 (created); {"message":"note created"}
